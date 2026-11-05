@@ -1,0 +1,5 @@
+IncidentID,Scenario,Allvar,Detekterad,NIS2_TidigVarning_24h,NIS2_Anmalan_72h,NIS2_Slutrapport_1man,GDPR,GDPR_IMY_72h,Sakerhetsskydd,Status
+INC-2026-001,Sensor spoofing (false data injection),4,2026-01-15 01:05,2026-01-16 01:05,2026-01-18 01:05,2026-02-15 01:05,Nej,-,Nej,Oppen
+INC-2026-002,Command injection (andrat borvarde),5,2026-01-15 23:05,2026-01-16 23:05,2026-01-18 23:05,2026-02-15 23:05,Nej,-,Ja (skyndsamt),Oppen
+INC-2026-003,Replay attack (uppspelning av historik),3,2026-01-16 21:05,2026-01-17 21:05,2026-01-19 21:05,2026-02-16 21:05,Nej,-,Nej,Oppen
+INC-2026-004,Ransomware-like OT disruption,5,2026-01-18 03:05,2026-01-19 03:05,2026-01-21 03:05,2026-02-18 03:05,Ja,2026-01-21 03:05,Ja (skyndsamt),Oppen

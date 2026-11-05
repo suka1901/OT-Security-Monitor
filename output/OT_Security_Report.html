@@ -1,0 +1,66 @@
+<!doctype html><html lang="sv"><head><meta charset="utf-8">
+<title>OT Security Monitor - Fjarrvarme</title><style>
+body{font-family:Segoe UI,Arial,sans-serif;max-width:980px;margin:24px auto;color:#1b2733;padding:0 16px}
+h1{margin-bottom:0} h2{border-bottom:2px solid #1380a4;padding-bottom:4px;margin-top:34px;color:#0e5f7a}
+.sub{color:#5a6b78;margin-top:4px} .cards{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
+.card{flex:1;min-width:150px;background:#f3f7f9;border:1px solid #d7e3e8;border-radius:8px;padding:12px}
+.card b{font-size:24px;color:#0e5f7a;display:block} table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border:1px solid #cfdbe2;padding:6px 8px;text-align:left} th{background:#0e5f7a;color:#fff}
+tr:nth-child(even){background:#f6fafb} img{max-width:100%;border:1px solid #d7e3e8;border-radius:6px}
+.ok{color:#177245;font-weight:bold}.miss{color:#b00020;font-weight:bold}.note{color:#5a6b78;font-size:13px}
+</style></head><body>
+<h1>OT Security Monitor &mdash; Fjarrvarme</h1>
+<div class="sub">Demo projekt &middot; genererad 2026-06-26 10:33</div>
+<div class="cards">
+<div class="card"><b>2016</b>telemetri-sampel<br><span class="note">7 dygn @ 5 min</span></div>
+<div class="card"><b>4</b>injicerade incidenter</div>
+<div class="card"><b>7</b>detekterade handelser</div>
+<div class="card"><b>78%</b>recall (tackning)</div>
+<div class="card"><b>98%</b>precision</div>
+</div>
+<p>Systemet larmar normala fjarrvarmedrift fran en ren baslinjeperiod och 
+larmar darefter på avvikelser: multivariata avvikelser (Mahalanobis-avstånd), brutna 
+fysikaliska samband (t.ex. givarförfalskning) och forlorad telemetri (tillgänglighet). 
+Metodiken motsvarar en strukturerad risk- och sarbarhetsanalys samt kontinuerlig 
+overvakning enligt NIST CSF 2.0 och kraven i NIS2/cybersakerhetslagen.</p>
+<h2>1. OT-telemetri och attacker</h2>
+<img src="fig_telemetry.png" alt="telemetri">
+<h2>2. Avvikelsedetektion</h2>
+<img src="fig_detection.png" alt="detektion">
+<p class="note">Detektionskvalitet mot facit: recall 78%, precision 98%, F1 0.87.</p>
+<h2>3. Incidenter och NIS2-rapporteringsfrister</h2>
+<table><tr><th>#</th><th>Scenario</th><th>CSF</th><th>Allvar</th><th>Detektionstid</th>
+<th>Tidig varning (24h)</th><th>Anmälan (72h)</th><th>Slutrapport (1 man)</th><th>Status</th></tr>
+<tr><td>1</td><td>Sensor spoofing (false data injection)</td><td>DE.AE / PR.DS</td><td>4/5</td><td>2026-01-15 01:05</td><td>2026-01-16 01:05</td><td>2026-01-18 01:05</td><td>2026-02-15 01:05</td><td><span class="ok">Detekterad</span></td></tr>
+<tr><td>2</td><td>Command injection (andrat borvarde)</td><td>RS.MA / PR.AA</td><td>5/5</td><td>2026-01-15 23:05</td><td>2026-01-16 23:05</td><td>2026-01-18 23:05</td><td>2026-02-15 23:05</td><td><span class="ok">Detekterad</span></td></tr>
+<tr><td>3</td><td>Replay attack (uppspelning av historik)</td><td>DE.CM / PR.AA</td><td>3/5</td><td>2026-01-16 21:05</td><td>2026-01-17 21:05</td><td>2026-01-19 21:05</td><td>2026-02-16 21:05</td><td><span class="ok">Detekterad</span></td></tr>
+<tr><td>4</td><td>Ransomware-like OT disruption</td><td>RC.RP / DE.CM</td><td>5/5</td><td>2026-01-18 03:05</td><td>2026-01-19 03:05</td><td>2026-01-21 03:05</td><td>2026-02-18 03:05</td><td><span class="ok">Detekterad</span></td></tr>
+</table>
+<p class="note">NIS2/cybersäkerhetslagen: tidig varning inom 24 timmar, incidentanmälan 
+inom 72 timmar och slutrapport inom en månad till MSB for vasentlig verksamhet.</p>
+<h2>4. Risk- och sarbarhetsanalys</h2>
+<img src="fig_risk.png" alt="risk">
+<table><tr><th>#</th><th>Scenario</th><th>CSF</th><th>Sannolikhet</th><th>Konsekvens</th><th>Riskvarde</th></tr>
+<tr><td>1</td><td>Sensor spoofing</td><td>DE.AE</td><td>3</td><td>4</td><td>12</td></tr>
+<tr><td>2</td><td>Command injection</td><td>RS.MA</td><td>2</td><td>5</td><td>10</td></tr>
+<tr><td>3</td><td>Replay attack</td><td>DE.CM</td><td>3</td><td>3</td><td>9</td></tr>
+<tr><td>4</td><td>Ransomware-like OT disruption</td><td>RC.RP</td><td>4</td><td>5</td><td>20</td></tr>
+<tr><td>5</td><td>Supply-chain / vendor compromise</td><td>GV.SC</td><td>3</td><td>4</td><td>12</td></tr>
+</table>
+<h2>5. Koppling till NIST CSF 2.0</h2>
+<table><tr><th>Funktion</th><th>Hur projektet adresserar den</th></tr>
+<tr><td>GOVERN</td><td>Riskaptit och prioritering via risk-/sarbarhetsanalysen; leverantorsrisk (GV.SC).</td></tr>
+<tr><td>IDENTIFY</td><td>Tillgangs- och dataflodeskartlaggning (IT/OT), riskbedomning per scenario.</td></tr>
+<tr><td>PROTECT</td><td>Rekommendationer: segmentering IT/OT, MFA, harden styrsystem, immutable backup.</td></tr>
+<tr><td>DETECT</td><td>Kontinuerlig overvakning och avvikelsedetektion (denna monitor).</td></tr>
+<tr><td>RESPOND</td><td>Incidentklassning, allvarsgrad och NIS2-rapporteringsfrister.</td></tr>
+<tr><td>RECOVER</td><td>Atgardsforslag och kontinuitet vid tillganglighetsstorning.</td></tr></table>
+<h2>6. Rekommenderade atgarder (NIST ransomware-profil)</h2><ul>
+<li>Offline/immutabla och testade sakerhetskopior av styrsystem och historik.</li>
+<li>Segmentering och zero-trust mellan kontorsnat (IT) och produktionsnat (OT).</li>
+<li>Phishing-resistent MFA och least privilege for atkomst till styrsystem.</li>
+<li>Kontinuerlig overvakning av natverk, endpoints och givarsignaler.</li>
+<li>Ovad incidenthanterings- och aterstallningsplan med out-of-band-kommunikation.</li></ul>
+<p class="note">Obs: syntetisk data for demonstration. Modellen ar forenklad och visar 
+metodik och arbetssatt.</p>
+</body></html>

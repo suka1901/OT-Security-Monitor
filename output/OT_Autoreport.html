@@ -1,0 +1,31 @@
+<!doctype html><html lang="sv"><head><meta charset="utf-8"><title>Automatiserad incidentrapportering</title><style>
+body{font-family:Segoe UI,Arial,sans-serif;max-width:1000px;margin:24px auto;color:#1b2733;padding:0 16px}
+h1{margin-bottom:0}h2{border-bottom:2px solid #0E5F7A;color:#0e5f7a;padding-bottom:4px;margin-top:30px}
+.cards{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0}.card{flex:1;min-width:140px;background:#f3f7f9;border:1px solid #d7e3e8;border-radius:8px;padding:12px}
+.card b{font-size:24px;color:#0e5f7a;display:block}table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border:1px solid #cfdbe2;padding:5px 7px;text-align:left}th{background:#0e5f7a;color:#fff}tr:nth-child(even){background:#f6fafb}
+img{max-width:100%;border:1px solid #d7e3e8;border-radius:6px}.note{color:#5a6b78;font-size:12px}a{color:#0e5f7a}
+</style></head><body>
+<h1>Automatiserad incidentrapportering</h1>
+<div class="note">Trollhattan Energi AB &middot; Energi (fjarrvarme) &middot; genererad 2026-06-26 10:50</div>
+<div class="cards">
+<div class="card"><b>4</b>incidenter</div>
+<div class="card"><b>4</b>NIS2-anmalningar</div>
+<div class="card"><b>1</b>GDPR (IMY)</div>
+<div class="card"><b>2</b>sakerhetsskydd</div>
+<div class="card"><b>2026-01-18 01:05</b>narmaste 72h-deadline</div>
+</div>
+<h2>Incidentregister</h2><table><tr><th>ID</th><th>Scenario</th><th>Allvar</th><th>Detekterad</th><th>NIS2 24h</th><th>NIS2 72h</th><th>Slutrapport</th><th>GDPR</th><th>Sak.skydd</th><th>Anmalan</th></tr>
+<tr><td>INC-2026-001</td><td>Sensor spoofing (false data injection)</td><td>4/5</td><td>2026-01-15 01:05</td><td>2026-01-16 01:05</td><td>2026-01-18 01:05</td><td>2026-02-15 01:05</td><td>Nej</td><td>Nej</td><td><a href="reports/INC-2026-001_anmalan.html">oppna</a></td></tr>
+<tr><td>INC-2026-002</td><td>Command injection (andrat borvarde)</td><td>5/5</td><td>2026-01-15 23:05</td><td>2026-01-16 23:05</td><td>2026-01-18 23:05</td><td>2026-02-15 23:05</td><td>Nej</td><td>Ja (skyndsamt)</td><td><a href="reports/INC-2026-002_anmalan.html">oppna</a></td></tr>
+<tr><td>INC-2026-003</td><td>Replay attack (uppspelning av historik)</td><td>3/5</td><td>2026-01-16 21:05</td><td>2026-01-17 21:05</td><td>2026-01-19 21:05</td><td>2026-02-16 21:05</td><td>Nej</td><td>Nej</td><td><a href="reports/INC-2026-003_anmalan.html">oppna</a></td></tr>
+<tr><td>INC-2026-004</td><td>Ransomware-like OT disruption</td><td>5/5</td><td>2026-01-18 03:05</td><td>2026-01-19 03:05</td><td>2026-01-21 03:05</td><td>2026-02-18 03:05</td><td>Ja</td><td>Ja (skyndsamt)</td><td><a href="reports/INC-2026-004_anmalan.html">oppna</a></td></tr>
+</table>
+<h2>Tidslinje for rapporteringsfrister</h2><img src="fig_deadlines.png" alt="deadlines">
+<h2>Om systemet</h2>
+<p>Vid detektion klassas varje incident automatiskt (typ, allvar, berorda regelverk), 
+tidsfrister beraknas och anmalningsdokument fylls i. NIS2/cybersakerhetslagen: tidig varning 
+inom 24 h, anmalan inom 72 h, slutrapport inom en manad till MSB. GDPR: anmalan till IMY inom 
+72 h vid personuppgiftsincident. Sakerhetsskydd: skyndsam anmalan till tillsynsmyndighet.</p>
+<p class="note">Syntetisk demonstration. Mallarna ar forenklade och ersatter inte officiella anmalningsformular.</p>
+</body></html>

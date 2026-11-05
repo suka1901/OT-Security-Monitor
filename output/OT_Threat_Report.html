@@ -1,0 +1,34 @@
+<!doctype html><html lang="sv"><head><meta charset="utf-8"><title>Hotrapport - phishing/ransomware</title><style>
+body{font-family:Segoe UI,Arial,sans-serif;max-width:980px;margin:24px auto;color:#1b2733;padding:0 16px}
+h1{margin-bottom:0}h2{border-bottom:2px solid #b00020;padding-bottom:4px;margin-top:32px;color:#8a0018}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid #cfdbe2;padding:6px 8px;text-align:left}
+th{background:#8a0018;color:#fff}tr:nth-child(even){background:#f7f3f4}img{max-width:100%;border:1px solid #d7e3e8;border-radius:6px}
+.note{color:#5a6b78;font-size:13px}.box{background:#fff4f4;border:1px solid #f0c8c8;border-radius:8px;padding:12px;margin:12px 0}
+</style></head><body>
+<h1>Hotrapport &mdash; phishing till ransomware</h1>
+<div class="note">Defensiv demonstration (simulerade indikatorer). Ingen funktionell skadlig kod.</div>
+<div class="box"><b>Scenario:</b> ett spearphishing-mejl ger angriparen fotfaste i IT-natet. 
+Stulna uppgifter anvands for sidledes rorelse mot OT, dar styrparametrar manipuleras och 
+tillgangligheten slas ut (ransomware). Malet ar att <b>upptacka tidigt</b> och bryta kedjan.</div>
+<h2>1. Kill-chain och ATT&amp;CK for ICS</h2>
+<img src="fig_killchain.png" alt="killchain">
+<table><tr><th>Steg</th><th>ATT&amp;CK for ICS</th><th>CSF 2.0</th><th>Forsvarsatgard</th></tr>
+<tr><td>1. Initial access (spearphishing)</td><td>TA0001 / T0865 Spearphishing Attachment</td><td>PROTECT / DETECT</td><td>Sakerhetsmedvetenhet, e-postfiltrering, phishing-resistent MFA</td></tr>
+<tr><td>2. Credential access</td><td>TA0006 / T0859 Valid Accounts</td><td>PROTECT (PR.AA)</td><td>MFA, least privilege, kontoovervakning</td></tr>
+<tr><td>3. Lateral movement IT -> OT</td><td>T0886 Remote Services</td><td>PROTECT (PR.IR)</td><td>Segmentering IT/OT, zero-trust, jump-host</td></tr>
+<tr><td>4. Manipulate / inhibit control</td><td>T0836 Modify Parameter</td><td>DETECT (DE.CM)</td><td>Avvikelsedetektion, integritetsskydd for givare</td></tr>
+<tr><td>5. Impact (loss of availability)</td><td>T0826 Loss of Availability / T0813 Denial of Control</td><td>RESPOND / RECOVER</td><td>Immutabel backup, IR-plan, NIS2-rapportering</td></tr>
+</table>
+<h2>2. IT-indikatorer och tidig detektion</h2>
+<img src="fig_indicators.png" alt="indicators">
+<p class="note">Larm pa 195 av 2016 sampel. Eskalerande indikatorer (inloggningar -&gt; 
+ost-vast-trafik -&gt; massfilomdopningar) ger forvarning innan OT-storningen intraffar, 
+vilket mojliggor inneslutning och NIS2-rapportering i tid.</p>
+<h2>3. Respons (NIST ransomware-profil + NIS2)</h2><ul>
+<li><b>Detect:</b> korrelera IT-indikatorer med OT-avvikelser (denna monitor).</li>
+<li><b>Respond:</b> isolera drabbade segment, aktivera IR-plan, out-of-band-kommunikation.</li>
+<li><b>NIS2:</b> tidig varning 24h, anmalan 72h, slutrapport 1 manad till MSB.</li>
+<li><b>Recover:</b> aterstall fran immutabla, testade backuper; verifiera integritet.</li>
+<li><b>Govern/Protect:</b> phishing-resistent MFA, segmentering IT/OT, allowlisting.</li></ul>
+<p class="note">Se aven OT_Security_Report.html och KILL_CHAIN_PLAYBOOK.md.</p>
+</body></html>
